@@ -5,9 +5,10 @@ class AppTheme {
   static final darkTheme = appDarkTheme;
   static const primaryColor = Colors.black87;
   static const backgroundAppColor = Color.fromRGBO(229, 152, 102, 1);
-  // static const backgroundAppColor2 = Color.fromRGBO(239, 182, 152, 1);
   static const backgroundAppColor2 = Color.fromRGBO(237, 187, 153, 1);
   static const backgroundAppColor3 = Color.fromRGBO(251, 238, 230, 1);
+
+
   static const titleTheme = TextStyle(fontSize: 25, fontFamily: 'Times New Roman', fontWeight: FontWeight.w700);
 }
 
