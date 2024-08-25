@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:market_mate/core/images/images.dart';
 import 'package:market_mate/core/services/dependencies_service.dart';
+import 'package:market_mate/core/utils/themes.dart';
+import 'package:market_mate/core/widgets/custom_app_bar.dart';
 import 'package:market_mate/features/product/presentation/pages/products_page.dart';
 import 'package:market_mate/features/sales/presentation/pages/sales_page.dart';
 import 'package:market_mate/features/suppliers/presentation/pages/supplier_page.dart';
@@ -25,6 +27,8 @@ class BottomNavigationBarPage extends StatefulWidget {
 class _BottomNavigationBarPageState extends State<BottomNavigationBarPage> {
   final _bloc = getIt<UserBloc>();
   int _currentPageIndex = 1;
+  dynamic size;
+  dynamic titles = ['Proveedores', 'Ventas', 'Productos'];
 
   @override
   void initState() {
@@ -33,8 +37,11 @@ class _BottomNavigationBarPageState extends State<BottomNavigationBarPage> {
 
   @override
   Widget build(BuildContext context) {
+    size = MediaQuery.sizeOf(context);
+
     return Scaffold(
-      appBar: buildAppBar(context),
+      appBar: CustomAppBar(title: titles[_currentPageIndex]),
+      backgroundColor: AppTheme.backgroundAppColor,
       body: BlocConsumer<UserBloc, UserState>(
         bloc: _bloc,
         listener: listener,
@@ -44,23 +51,17 @@ class _BottomNavigationBarPageState extends State<BottomNavigationBarPage> {
     );
   }
 
-  AppBar buildAppBar(BuildContext context) {
-    return AppBar(
-      centerTitle: true,
-      title: Text(
-        'Stock Manager',
-        style: Theme.of(context).textTheme.titleMedium,
-      ),
-      backgroundColor: Theme.of(context).primaryColor,
-      elevation: 5,
-    );
-  }
-
   Widget builder(context, state) {
-    return Column(
-      children: [
-        Expanded(child: widget.child),
-      ],
+    return Padding(
+      padding: const EdgeInsets.all(5.0),
+      child: Container(
+        width: size.width * 1,
+        decoration: BoxDecoration(
+          color: AppTheme.backgroundAppColor2,
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: widget.child
+      ),
     );
   }
 
@@ -92,19 +93,26 @@ class _BottomNavigationBarPageState extends State<BottomNavigationBarPage> {
   }
 
   Widget _buildBottomBar() {
-    return BottomAppBar(
-      height: 80,
-      color: Theme.of(context).primaryColor,
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.end,
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: List.generate(
-          3,
-          (index) => _buildBottomBarButton(index),
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: size.height * 0.005, vertical: size.height * 0.01),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(20.0),
+        child: BottomAppBar(
+          color: AppTheme.backgroundAppColor3,
+          height: size.height * 0.1,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: List.generate(
+              3,
+                  (index) => _buildBottomBarButton(index),
+            ),
+          ),
         ),
       ),
     );
   }
+
 
   Widget _buildBottomBarButton(int index) {
     Widget button;
@@ -119,12 +127,12 @@ class _BottomNavigationBarPageState extends State<BottomNavigationBarPage> {
         button = _buildImageAssetButton(Images.productIcon, index);
         break;
       default:
-        button = _buildIconButton(Icons.error, index);
+        button = _buildErrorIconButton(Icons.error, index);
     }
     return button;
   }
 
-  Widget _buildIconButton(IconData iconData, int index) {
+  Widget _buildErrorIconButton(IconData iconData, int index) {
     return IconButton(
       icon: Icon(
         iconData,
@@ -164,7 +172,9 @@ class _BottomNavigationBarPageState extends State<BottomNavigationBarPage> {
         children: [
           Image.asset(
             imagePath,
-            color: _currentPageIndex == index ? Colors.black87 : Colors.grey,
+            color: _currentPageIndex == index
+                ? AppTheme.primaryColor
+                : Colors.grey,
             width: _currentPageIndex == index ? 40 : 30,
             height: _currentPageIndex == index ? 40 : 30,
           ),
@@ -172,7 +182,7 @@ class _BottomNavigationBarPageState extends State<BottomNavigationBarPage> {
             buttonText,
             style: _currentPageIndex != index
                 ? Theme.of(context).textTheme.bodySmall
-                : const TextStyle(color: Colors.black),
+                : const TextStyle(color: AppTheme.primaryColor),
           )
         ],
       ),

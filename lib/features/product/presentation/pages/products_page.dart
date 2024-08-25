@@ -9,14 +9,18 @@ class ProductsPage extends StatefulWidget {
 }
 
 class _ProductsPageState extends State<ProductsPage> {
+  dynamic size;
+
   @override
   Widget build(BuildContext context) {
-    return const Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Text('Productos'),
-      ],
+    size = MediaQuery.sizeOf(context);
+
+    return const Padding(
+      padding: EdgeInsets.all(10.0),
+      child: Column(
+        children: [
+        ],
+      ),
     );
   }
 }

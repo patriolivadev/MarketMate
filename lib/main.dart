@@ -13,6 +13,8 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
+
   await configureDependencies(Environment.dev);
 
   SystemChrome.setPreferredOrientations([
@@ -35,7 +37,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      theme: AppThemes.lightTheme,
+      theme: AppTheme.lightTheme,
       routerConfig: router,
     );
   }
