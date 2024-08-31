@@ -87,7 +87,6 @@ class ExpandedSaleItemInfoDialog extends StatelessWidget {
   }
 }
 
-// Function to show the dialog
 void showExpandedSaleItemInfoDialog(
     BuildContext context, List<Sale> sales, int index) {
   showDialog(
