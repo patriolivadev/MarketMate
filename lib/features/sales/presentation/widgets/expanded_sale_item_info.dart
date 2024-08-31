@@ -59,7 +59,7 @@ class ExpandedSaleItemInfoDialog extends StatelessWidget {
 
   Widget buildListView(BuildContext context) {
     return ListView.separated(
-      itemCount: sales[index].products.length,
+      itemCount: sales[index].productsIds.length,
       itemBuilder: (context, productIndex) {
         return SizedBox(
           height: MediaQuery.of(context).size.height * 0.04,
@@ -67,11 +67,11 @@ class ExpandedSaleItemInfoDialog extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                sales[index].products[productIndex].name,
+                sales[index].productsIds[productIndex],
                 style: const TextStyle(fontSize: 17),
               ),
               Text(
-                '\$${sales[index].products[productIndex].price}',
+                '\$${sales[index].productsIds[productIndex]}',
                 style: const TextStyle(fontSize: 15),
               ),
             ],

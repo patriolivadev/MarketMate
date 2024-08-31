@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:market_mate/core/services/dependencies_service.dart';
 import 'package:market_mate/core/utils/themes.dart';
-import 'package:market_mate/features/product/data/models/product_model.dart';
+import 'package:market_mate/core/widgets/loading_widget.dart';
 import 'package:market_mate/features/sales/data/models/sale_model.dart';
 import 'package:market_mate/features/sales/domain/entities/sale.dart';
 import 'package:market_mate/features/sales/presentation/manager/sales_bloc.dart';
@@ -20,204 +20,28 @@ class SalesPage extends StatefulWidget {
 class _SalesPageState extends State<SalesPage> {
   final SalesBloc _bloc = getIt<SalesBloc>();
   List<Sale> sales = [
-    SaleModel(
-        id: '1',
-        products: [
-          ProductModel(
-              id: 'id',
-              name: 'Coca Cola',
-              description: 'description',
-              price: 2000,
-              suppliers: []),
-          ProductModel(
-              id: 'id',
-              name: 'Pan',
-              description: 'description',
-              price: 500,
-              suppliers: []),
-        ],
-        date: DateTime.now(),
-        totalPrice: 120),
-    SaleModel(
-        id: '1',
-        products: [
-          ProductModel(
-              id: 'id',
-              name: 'Coca Cola',
-              description: 'description',
-              price: 2000,
-              suppliers: []),
-          ProductModel(
-              id: 'id',
-              name: 'Pan',
-              description: 'description',
-              price: 500,
-              suppliers: []),
-        ],
-        date: DateTime.now(),
-        totalPrice: 410),
-    SaleModel(
-        id: '1',
-        products: [
-          ProductModel(
-              id: 'id',
-              name: 'Coca Cola',
-              description: 'description',
-              price: 2000,
-              suppliers: []),
-          ProductModel(
-              id: 'id',
-              name: 'Pan',
-              description: 'description',
-              price: 500,
-              suppliers: []),
-        ],
-        date: DateTime.now(),
-        totalPrice: 2500),
-    SaleModel(
-        id: '1',
-        products: [
-          ProductModel(
-              id: 'id',
-              name: 'Coca Cola',
-              description: 'description',
-              price: 2000,
-              suppliers: []),
-          ProductModel(
-              id: 'id',
-              name: 'Pan',
-              description: 'description',
-              price: 500,
-              suppliers: []),
-        ],
-        date: DateTime.now(),
-        totalPrice: 105),
-    SaleModel(
-        id: '1',
-        products: [
-          ProductModel(
-              id: 'id',
-              name: 'Coca Cola',
-              description: 'description',
-              price: 2000,
-              suppliers: []),
-          ProductModel(
-              id: 'id',
-              name: 'Pan',
-              description: 'description',
-              price: 500,
-              suppliers: []),
-        ],
-        date: DateTime.now(),
-        totalPrice: 103),
-    SaleModel(
-        id: '1',
-        products: [
-          ProductModel(
-              id: 'id',
-              name: 'Coca Cola',
-              description: 'description',
-              price: 2000,
-              suppliers: []),
-          ProductModel(
-              id: 'id',
-              name: 'Pan',
-              description: 'description',
-              price: 500,
-              suppliers: []),
-        ],
-        date: DateTime.now(),
-        totalPrice: 1220),
-    SaleModel(
-        id: '1',
-        products: [
-          ProductModel(
-              id: 'id',
-              name: 'Coca Cola',
-              description: 'description',
-              price: 2000,
-              suppliers: []),
-          ProductModel(
-              id: 'id',
-              name: 'Pan',
-              description: 'description',
-              price: 500,
-              suppliers: []),
-        ],
-        date: DateTime.now(),
-        totalPrice: 110),
-    SaleModel(
-        id: '1',
-        products: [
-          ProductModel(
-              id: 'id',
-              name: 'Coca Cola',
-              description: 'description',
-              price: 2000,
-              suppliers: []),
-          ProductModel(
-              id: 'id',
-              name: 'Pan',
-              description: 'description',
-              price: 500,
-              suppliers: []),
-        ],
-        date: DateTime.now(),
-        totalPrice: 7810),
-    SaleModel(
-        id: '1',
-        products: [
-          ProductModel(
-              id: 'id',
-              name: 'Coca Cola',
-              description: 'description',
-              price: 2000,
-              suppliers: []),
-          ProductModel(
-              id: 'id',
-              name: 'Pan',
-              description: 'description',
-              price: 500,
-              suppliers: []),
-        ],
-        date: DateTime.now(),
-        totalPrice: 160),
-    SaleModel(
-        id: '1',
-        products: [
-          ProductModel(
-              id: 'id',
-              name: 'Coca Cola',
-              description: 'description',
-              price: 2000,
-              suppliers: []),
-          ProductModel(
-              id: 'id',
-              name: 'Pan',
-              description: 'description',
-              price: 500,
-              suppliers: []),
-        ],
-        date: DateTime.now(),
-        totalPrice: 1540),
-    SaleModel(
-        id: '1',
-        products: [
-          ProductModel(
-              id: 'id',
-              name: 'Coca Cola',
-              description: 'description',
-              price: 2000,
-              suppliers: []),
-          ProductModel(
-              id: 'id',
-              name: 'Pan',
-              description: 'description',
-              price: 500,
-              suppliers: []),
-        ],
-        date: DateTime.now(),
-        totalPrice: 1320),
+    // SaleModel(
+    //     id: '1', productsIds: ['1', '2'], date: DateTime.now(), totalPrice: 120),
+    // SaleModel(
+    //     id: '1', productsIds: ['1', '2'], date: DateTime.now(), totalPrice: 410),
+    // SaleModel(
+    //     id: '1', productsIds: ['1', '2'], date: DateTime.now(), totalPrice: 2500),
+    // SaleModel(
+    //     id: '1', productsIds: ['1', '2'], date: DateTime.now(), totalPrice: 105),
+    // SaleModel(
+    //     id: '1', productsIds: ['1', '2'], date: DateTime.now(), totalPrice: 103),
+    // SaleModel(
+    //     id: '1', productsIds: ['1', '2'], date: DateTime.now(), totalPrice: 1220),
+    // SaleModel(
+    //     id: '1', productsIds: ['1', '2'], date: DateTime.now(), totalPrice: 110),
+    // SaleModel(
+    //     id: '1', productsIds: ['1', '2'], date: DateTime.now(), totalPrice: 7810),
+    // SaleModel(
+    //     id: '1', productsIds: ['1', '2'], date: DateTime.now(), totalPrice: 160),
+    // SaleModel(
+    //     id: '1', productsIds: ['1', '2'], date: DateTime.now(), totalPrice: 1540),
+    // SaleModel(
+    //     id: '1', productsIds: ['1', '2'], date: DateTime.now(), totalPrice: 1320),
   ];
   dynamic size;
 
@@ -234,9 +58,18 @@ class _SalesPageState extends State<SalesPage> {
     );
   }
 
-  void listener(context, state) {}
+  void listener(context, state) {
+    switch(state.runtimeType){
+      case OnGetSales:
+        sales = (state as OnGetSales).sales;
+    }
+  }
 
   Widget builder(context, state) {
+    switch(state.runtimeType){
+      case OnLoading:
+        return const LoadingWidget();
+    }
     return Padding(
       padding: const EdgeInsets.all(10.0),
       child: Stack(

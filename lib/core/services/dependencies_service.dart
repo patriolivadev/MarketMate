@@ -12,3 +12,7 @@ Future<GetIt> configureDependencies(String env) async {
   getIt.allowReassignment = true;
   return getIt;
 }
+
+@module
+abstract class InjectableModule{
+}
