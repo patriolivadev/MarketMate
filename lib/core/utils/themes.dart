@@ -8,8 +8,11 @@ class AppTheme {
   static const backgroundAppColor2 = Color.fromRGBO(237, 187, 153, 1);
   static const backgroundAppColor3 = Color.fromRGBO(251, 238, 230, 1);
 
-
-  static const titleTheme = TextStyle(fontSize: 25, fontFamily: 'Times New Roman', fontWeight: FontWeight.w700);
+  static const titleTheme = TextStyle(
+      fontSize: 25, fontFamily: 'Times New Roman', fontWeight: FontWeight.w700);
+  static const subtitleTheme =
+      TextStyle(fontSize: 20, fontWeight: FontWeight.bold);
+  static const greyLetter = TextStyle(fontSize: 14, color: Colors.black45);
 }
 
 const TextStyle defaultTextStyle = TextStyle(
@@ -43,6 +46,5 @@ final ThemeData appDarkTheme = ThemeData(
   textTheme: TextTheme(
     bodySmall: defaultTextStyle.copyWith(color: Colors.white),
     titleMedium: defaultTitleStyle.copyWith(color: Colors.white),
-
   ),
 );

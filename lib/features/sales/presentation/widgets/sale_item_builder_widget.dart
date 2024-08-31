@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:market_mate/core/utils/themes.dart';
 import 'package:market_mate/features/sales/domain/entities/sale.dart';
 import 'package:market_mate/features/sales/presentation/widgets/expanded_sale_item_info.dart';
 
@@ -29,7 +30,7 @@ class _SaleItemBuilderState extends State<SaleItemBuilder> {
 
     return InkWell(
       onTap: () {
-        showExpandedSaleItemInfoModal(context, widget.sales, widget.index);
+        showExpandedSaleItemInfoDialog(context, widget.sales, widget.index);
       },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -42,7 +43,7 @@ class _SaleItemBuilderState extends State<SaleItemBuilder> {
 
   Container buildItem(String formattedDate, BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.all(15.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -60,13 +61,11 @@ class _SaleItemBuilderState extends State<SaleItemBuilder> {
         children: [
           Text(
             '\$${widget.sales[widget.index].totalPrice}',
-            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            style: AppTheme.subtitleTheme,
           ),
           Text(
             formattedDate,
-            style: const TextStyle(
-              fontSize: 14,
-            ),
+            style: AppTheme.greyLetter,
           ),
         ],
       ),

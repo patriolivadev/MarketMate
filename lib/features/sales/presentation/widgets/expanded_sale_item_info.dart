@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:market_mate/core/utils/themes.dart';
 import 'package:market_mate/features/sales/domain/entities/sale.dart';
 
-class ExpandedSaleItemInfoModal extends StatelessWidget {
+class ExpandedSaleItemInfoDialog extends StatelessWidget {
   final List<Sale> sales;
   final int index;
 
-  const ExpandedSaleItemInfoModal({
+  const ExpandedSaleItemInfoDialog({
     super.key,
     required this.sales,
     required this.index,
@@ -13,25 +15,44 @@ class ExpandedSaleItemInfoModal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(16.0),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: const BorderRadius.vertical(top: Radius.circular(10)),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.1),
-            spreadRadius: 2,
-            blurRadius: 5,
-            offset: const Offset(0, -3),
-          ),
-        ],
+    return Dialog(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
       ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          buildListView(context),
-        ],
+      child: Container(
+        padding: const EdgeInsets.all(16.0),
+        decoration: BoxDecoration(
+          color: AppTheme.backgroundAppColor3,
+          borderRadius: BorderRadius.circular(10),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.1),
+              spreadRadius: 2,
+              blurRadius: 5,
+              offset: const Offset(0, 3),
+            ),
+          ],
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text(
+                  'Productos',
+                  style: AppTheme.subtitleTheme,
+                ),
+                InkWell(
+                  onTap:() => context.pop(),
+                  child: const Icon(Icons.close, size: 20,),
+                ),
+              ],
+            ),
+            const Divider(),
+            buildListView(context),
+          ],
+        ),
       ),
     );
   }
@@ -47,11 +68,11 @@ class ExpandedSaleItemInfoModal extends StatelessWidget {
             children: [
               Text(
                 sales[index].products[productIndex].name,
-                style: const TextStyle(fontSize: 14),
+                style: const TextStyle(fontSize: 17),
               ),
               Text(
                 '\$${sales[index].products[productIndex].price}',
-                style: const TextStyle(fontSize: 14),
+                style: const TextStyle(fontSize: 15),
               ),
             ],
           ),
@@ -66,12 +87,13 @@ class ExpandedSaleItemInfoModal extends StatelessWidget {
   }
 }
 
-void showExpandedSaleItemInfoModal(BuildContext context, List<Sale> sales, int index) {
-  showModalBottomSheet(
+// Function to show the dialog
+void showExpandedSaleItemInfoDialog(
+    BuildContext context, List<Sale> sales, int index) {
+  showDialog(
     context: context,
-    isScrollControlled: true,
     builder: (BuildContext context) {
-      return ExpandedSaleItemInfoModal(
+      return ExpandedSaleItemInfoDialog(
         sales: sales,
         index: index,
       );

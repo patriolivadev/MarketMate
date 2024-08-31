@@ -250,13 +250,22 @@ class _SalesPageState extends State<SalesPage> {
 
   Widget buildListView() {
     return Container(
-      color: AppTheme.backgroundAppColor3,
+      decoration: BoxDecoration(
+        color: AppTheme.backgroundAppColor3,
+        borderRadius: BorderRadius.circular(10),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            spreadRadius: 2,
+            blurRadius: 5,
+            offset: const Offset(0, 3),
+          ),
+        ],
+      ),
       child: ListView.separated(
         itemCount: sales.length,
         itemBuilder: itemBuilder,
-        separatorBuilder: (BuildContext context, int index) {
-          return const Divider();
-        },
+        separatorBuilder: (BuildContext context, int index) => const Divider(),
       ),
     );
   }
