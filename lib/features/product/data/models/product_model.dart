@@ -3,18 +3,12 @@ import 'package:market_mate/features/product/domain/entities/product.dart';
 
 class ProductModel extends Product {
   ProductModel({
-    required String id,
-    required String name,
-    required String description,
-    required double price,
-    required List<String> suppliers,
-  }) : super(
-          id: id,
-          name: name,
-          description: description,
-          price: price,
-          suppliers: suppliers,
-        );
+    required super.id,
+    required super.name,
+    required super.description,
+    required super.price,
+    required super.suppliers,
+  });
 
   @override
   Map<String, dynamic> toJson() {

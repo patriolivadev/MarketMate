@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class SupplierPage extends StatefulWidget {
   static const routeName = '/suppliers-page';
+
   const SupplierPage({super.key});
 
   @override
@@ -9,14 +10,18 @@ class SupplierPage extends StatefulWidget {
 }
 
 class _SupplierPageState extends State<SupplierPage> {
+  dynamic size;
+
   @override
   Widget build(BuildContext context) {
-    return const Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Text('Proveedores'),
-      ],
+    size = MediaQuery.sizeOf(context);
+
+    return const Padding(
+      padding: EdgeInsets.all(10.0),
+      child: Column(
+        children: [
+        ],
+      ),
     );
   }
 }

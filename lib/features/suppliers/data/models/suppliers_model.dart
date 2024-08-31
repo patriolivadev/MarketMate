@@ -2,10 +2,10 @@ import 'package:market_mate/features/suppliers/domain/entities/supplier.dart';
 
 class SupplierModel extends Supplier {
   SupplierModel({
-    required id,
-    required name,
-    required phoneNumber,
-  }) : super(id: id, name: name, phoneNumber: phoneNumber);
+    required super.id,
+    required super.name,
+    required super.phoneNumber,
+  });
 
   @override
   Map<String, dynamic> toJson() {
