@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
@@ -14,5 +15,8 @@ Future<GetIt> configureDependencies(String env) async {
 }
 
 @module
-abstract class InjectableModule{
+abstract class InjectableModule {
+  @singleton
+  FirebaseFirestore get firestore => FirebaseFirestore.instance;
 }
+

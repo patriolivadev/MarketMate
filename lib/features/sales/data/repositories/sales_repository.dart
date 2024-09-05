@@ -12,8 +12,8 @@ class SalesRepository extends SalesRepositoryBase{
   @override
   Future<Either<Failure, List<Sale>>> getSales() async {
     try {
-      List<Sale> user = await remote.getSales();
-      return Right(user);
+      List<Sale> sales = await remote.getSales();
+      return Right(sales);
     } on Failure catch (e) {
       return Left(e);
     } catch (e) {

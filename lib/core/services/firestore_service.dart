@@ -96,9 +96,15 @@ class FirestoreService extends FirestoreServiceBase {
   }) async {
     try {
       QuerySnapshot querySnapshot = await firestore.collection(collection).get();
-      return querySnapshot.docs.map((doc) => doc.data() as Map<String, dynamic>).toList();
+
+      return querySnapshot.docs.map((doc) {
+        Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
+        data['id'] = doc.id;
+        return data;
+      }).toList();
     } catch (e) {
       rethrow;
     }
   }
+
 }

@@ -11,6 +11,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart' as _i974;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
+import 'package:market_mate/core/services/dependencies_service.dart' as _i1026;
 import 'package:market_mate/core/services/firestore_service.dart' as _i570;
 import 'package:market_mate/features/product/presentation/manager/product_bloc.dart'
     as _i143;
@@ -40,16 +41,18 @@ extension GetItInjectableX on _i174.GetIt {
       environment,
       environmentFilter,
     );
+    final injectableModule = _$InjectableModule();
     gh.factory<_i143.ProductBloc>(() => _i143.ProductBloc());
     gh.factory<_i687.SuppliersBloc>(() => _i687.SuppliersBloc());
     gh.factory<_i969.UserBloc>(() => _i969.UserBloc());
-    gh.factory<_i636.SalesRemoteDataSourceBase>(() =>
-        _i636.SalesRemoteDataSource(
-            firestoreService: gh<_i570.FirestoreService>()));
-    gh.factory<_i680.SalesRepositoryBase>(() =>
-        _i1035.SalesRepository(remote: gh<_i636.SalesRemoteDataSourceBase>()));
+    gh.singleton<_i974.FirebaseFirestore>(() => injectableModule.firestore);
     gh.factory<_i570.FirestoreServiceBase>(
         () => _i570.FirestoreService(firestore: gh<_i974.FirebaseFirestore>()));
+    gh.factory<_i636.SalesRemoteDataSourceBase>(() =>
+        _i636.SalesRemoteDataSource(
+            firestoreService: gh<_i570.FirestoreServiceBase>()));
+    gh.factory<_i680.SalesRepositoryBase>(() =>
+        _i1035.SalesRepository(remote: gh<_i636.SalesRemoteDataSourceBase>()));
     gh.factory<_i558.GetSalesUseCase>(() =>
         _i558.GetSalesUseCase(repository: gh<_i680.SalesRepositoryBase>()));
     gh.factory<_i823.SalesBloc>(
@@ -57,3 +60,5 @@ extension GetItInjectableX on _i174.GetIt {
     return this;
   }
 }
+
+class _$InjectableModule extends _i1026.InjectableModule {}

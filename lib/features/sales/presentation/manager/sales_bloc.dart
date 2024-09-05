@@ -20,11 +20,11 @@ class SalesBloc extends Bloc<SalesEvent, SalesState> {
 
   }) : super(SalesInitial()) {
     on<SalesEvent>((event, emit) {});
-    on<ActionGetRole>(_getSales);
+    on<ActionGetSales>(_getSales);
   }
 
   FutureOr<void> _getSales(
-      ActionGetRole event,
+      ActionGetSales event,
       Emitter<SalesState> emit,
       ) async {
     emit(OnLoading());

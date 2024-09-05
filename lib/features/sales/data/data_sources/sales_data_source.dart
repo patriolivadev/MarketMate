@@ -4,7 +4,7 @@ import 'package:market_mate/features/sales/data/models/sale_model.dart';
 import 'package:market_mate/features/sales/domain/entities/sale.dart';
 
 abstract class SalesRemoteDataSourceBase {
-  final FirestoreService firestoreService;
+  final FirestoreServiceBase firestoreService;
 
   SalesRemoteDataSourceBase({
     required this.firestoreService,
@@ -24,6 +24,7 @@ class SalesRemoteDataSource extends SalesRemoteDataSourceBase {
   @override
   Future<List<Sale>> getSales() async {
     final result = await firestoreService.getAll(collection: salesKey);
+    print(result[0].toString());
     List<Sale> sales = result.map((item) => SaleModel.fromJson(map: item)).toList();
 
     return sales;

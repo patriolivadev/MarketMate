@@ -1,9 +1,9 @@
+import 'package:core_encode/core_encode.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:market_mate/core/services/dependencies_service.dart';
 import 'package:market_mate/core/utils/themes.dart';
 import 'package:market_mate/core/widgets/loading_widget.dart';
-import 'package:market_mate/features/sales/data/models/sale_model.dart';
 import 'package:market_mate/features/sales/domain/entities/sale.dart';
 import 'package:market_mate/features/sales/presentation/manager/sales_bloc.dart';
 import 'package:market_mate/features/sales/presentation/widgets/sale_item_builder_widget.dart';
@@ -46,6 +46,13 @@ class _SalesPageState extends State<SalesPage> {
   dynamic size;
 
   @override
+  void initState() {
+    _bloc.add(ActionGetSales(noParams: NoParams()));
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     size = MediaQuery.sizeOf(context);
     return Scaffold(
@@ -62,12 +69,16 @@ class _SalesPageState extends State<SalesPage> {
     switch(state.runtimeType){
       case OnGetSales:
         sales = (state as OnGetSales).sales;
+        break;
+      case OnGetSalesFailure:
+        print('FALLO EN GETSALES');
+        break;
     }
   }
 
   Widget builder(context, state) {
     switch(state.runtimeType){
-      case OnLoading:
+      case const (OnLoading):
         return const LoadingWidget();
     }
     return Padding(
